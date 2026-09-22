@@ -5,7 +5,7 @@ description: Create or update a requested CompozyOS spec and its applicable comp
 
 # Create Spec
 
-Use for a requested specification, not as a prerequisite to an ordinary fix. Author `_spec.md` with Product and Technical parts and the applicable companion contracts under `.compozy/tasks/<slug>/`.
+Use for a requested specification, not as a prerequisite to an ordinary fix. Author one `_spec.md` under `.compozy/tasks/<slug>/`. Read [spec phases](references/spec-phases.md): `product` writes the PRD/Part I only, `technical` completes the engineering contracts from settled requirements, and the default `full` covers both. Apply only the steps belonging to the requested phase.
 
 1. Reuse the user's decisions, existing spec, and current research. Inspect relevant code/contracts for unresolved questions. Market research is needed only for a market/product uncertainty or an explicit request; delegation is optional and bounded.
 2. State the motivating problem, observable outcome, scope, and non-goals. Ask focused questions only for decisions the evidence cannot settle; apparent simplicity is not evidence. An approved direction satisfies the product checkpoint; do not repeat an interview or approval already completed. For an open-ended product interview, use the relevant branch of `references/grill-protocol.md`.
@@ -13,8 +13,9 @@ Use for a requested specification, not as a prerequisite to an ordinary fix. Aut
 4. Define the changed public surface before its internal implementation: `_dx.md` uses `references/dx-template.md`; UI-bearing work uses `_uiux.md` and `references/uiux-template.md`. For an internal-only spec, a brief no-public-surface entry is sufficient. Preserve named visual references and production owners.
 5. Write Part II with the concrete contracts the design changes. Read only relevant ADRs/analysis. Use `references/adr-template.md` for consequential decisions with real alternatives; a routine choice needs no standalone ADR. Include SD-013 compatibility for changed user state/public surfaces, delete targets, and one owning impact analysis with links from companions.
 6. Write `_tests.md` using `references/tests-template.md`: distinct invariants, owning suites, inputs/results, and necessary integration journeys. Reuse existing coverage; no quotas per component, error class, or layer.
-7. Check applicable spec markers with `cy-spec-preflight`, contract consistency, and the earliest useful end-to-end outcome. Choose slice count from dependencies/risk; `slice_budget` is a planning preference, not a forced split or permission loop.
-8. Save reviewable files and summarize unresolved decisions. After the user approves the saved spec, offer optional `cy-spec-peer-review`; apply only selected findings. Do not start implementation merely because spec writing is complete.
+7. Check applicable spec markers with `cy-spec-preflight` when available, contract consistency, and the earliest useful end-to-end outcome. Choose slice count from dependencies/risk; `slice_budget` is a planning preference, not a forced split or permission loop.
+If preflight is unavailable, inspect applicable contracts directly and disclose that limit; a policy requiring that exact tool remains blocked. Product-only mode does not run technical preflight.
+8. Save reviewable files and summarize unresolved decisions. After the user approves the saved spec, offer optional `cy-spec-peer-review`; apply only selected findings. Spec-only requests stop here. For an already authorized implementation workflow, return the artifact to its caller and continue under that authority without a new approval checkpoint.
 
 Templates are section guides: keep shared outcome/contract content, omit irrelevant sections or record a short reason where a downstream schema requires a slot. Read each reference when its branch is used, not the whole package. Maintain a concise File References index naming contract inputs and why each matters; tasks copy their relevant subset. Preserve requested scope; narrowing an accepted motivating problem requires the user's recorded decision.
 
